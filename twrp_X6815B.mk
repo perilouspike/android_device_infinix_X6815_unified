@@ -23,7 +23,7 @@ $(call inherit-product, device/infinix/X6815B/device.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product/base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 # Device Identifier
