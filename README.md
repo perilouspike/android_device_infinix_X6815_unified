@@ -1,0 +1,1 @@
+# android_device_infinix_X6815B_twrp
