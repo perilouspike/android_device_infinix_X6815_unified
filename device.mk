@@ -21,6 +21,12 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Api level
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+# Platform
+PRODUCT_PLATFORM := mt6877
+
+# A/B
+ENABLE_VIRTUAL_AB := true
+
 # fastboot/d hal
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
@@ -53,3 +59,10 @@ PRODUCT_PACKAGES += \
     update_engine \
     update_verifier \
     update_engine_sideload
+
+# health Hal
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl
+
+TW_OVERRIDE_SYSTEM_PROPS := \
+    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
