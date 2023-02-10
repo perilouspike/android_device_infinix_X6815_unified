@@ -168,20 +168,21 @@ TW_INCLUDE_CRYPTO := true
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster4 \
-    libpuresoftkeymasterdevice \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client
+    libpuresoftkeymasterdevice
+#ashmemd_aidl_interface-cpp
+#libashmemd_client
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+#$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so
+#$(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 # TWRP Configuration
 RECOVERY_SDCARD_ON_DATA := true
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
+TARGET_USES_MKE2FS := true
 #TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
@@ -193,12 +194,16 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.
 TW_MAX_BRIGHTNESS := 1000
 TW_DEFAULT_BRIGHTNESS := 800
 TW_INCLUDE_NTFS_3G := true
-TW_INCLUDE_FUSE_EXFAT := true
+#TW_INCLUDE_FUSE_EXFAT := true
 TW_EXCLUDE_APEX := true
 TW_LOAD_VENDOR_MODULES := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_INCLUDE_RESETPROP := true
 TW_HAS_MTP := true
+TW_DEVICE_VERSION := perilouspike
+
+# Exclude
+TW_EXCLUDE_TWRP_APP := true
 
 # Logcat
 TWRP_INCLUDE_LOGCAT := true
