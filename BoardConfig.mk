@@ -162,18 +162,20 @@ PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-#TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_CRYPTO_FBE := true
 #TW_USE_FSCRYPT_POLICY := 1
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster41 \
+    libkeymaster4 \
     libpuresoftkeymasterdevice \
     ashmemd_aidl_interface-cpp \
     libashmemd_client
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
@@ -195,7 +197,7 @@ TW_DEFAULT_BRIGHTNESS := 800
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
 TW_EXCLUDE_APEX := true
-#TW_LOAD_VENDOR_MODULES := true
+TW_LOAD_VENDOR_MODULES := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_INCLUDE_RESETPROP := true
 TW_HAS_MTP := true
