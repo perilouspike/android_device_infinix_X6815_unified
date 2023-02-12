@@ -61,7 +61,9 @@ BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x11088000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user
-BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+#BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+# TODO: Used in other device tree. Do we need it?
+#BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 
 # Args
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
@@ -91,7 +93,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Dynamic Partition
 BOARD_SUPER_PARTITION_GROUPS := main
-BOARD_INFINIX_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext
+BOARD_INFINIX_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext odm
 BOARD_MAIN_SIZE := 9126805504
 
 # File System
@@ -104,6 +106,7 @@ BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 # Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
+TARGET_COPY_OUT_ODM := odm
 
 # A/B
 AB_OTA_UPDATER := true
@@ -136,14 +139,15 @@ BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_ROOT_EXTRA_FOLDERS += metadata
 
-# Verified Boot
+# Android Verified Boot
+# TODO: What about the system_ext partition?
 BOARD_AVB_ENABLE := true
 BOARD_AVB_VBMETA_SYSTEM := system product
 BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
-BOARD_AVB_VBMETA_VENDOR := vendor
+BOARD_AVB_VBMETA_VENDOR := vendor odm
 BOARD_AVB_VBMETA_VENDOR_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
@@ -157,7 +161,7 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 3
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-PLATFORM_VERSION := 99.87.36
+PLATFORM_VERSION := 16.1.0
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
 # Crypto
@@ -165,19 +169,25 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 #TW_USE_FSCRYPT_POLICY := 1
 
+# Copy fstab to ensure the first stage boot mounts everything we need.
+# See https://source.android.com/docs/core/architecture/kernel/mounting-partitions-early#fstab-ramdisk
+#PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(TARGET_BOARD_PLATFORM)
+#PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/fstab.$(TARGET_BOARD_PLATFORM)
+#PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(TARGET_BOARD_PLATFORM)
+
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
     libkeymaster41 \
     libkeymaster4 \
-    libpuresoftkeymasterdevice \
-    ashmemd_aidl_interface-cpp \
+    libpuresoftkeymasterdevice
+#ashmemd_aidl_interface-cpp \
     libashmemd_client
 
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+#$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 # TWRP Configuration
@@ -188,7 +198,7 @@ TARGET_USES_MKE2FS := true
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-#TW_USE_TOOLBOX := true
+TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
@@ -196,12 +206,13 @@ TW_MAX_BRIGHTNESS := 1000
 TW_DEFAULT_BRIGHTNESS := 800
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_FUSE_EXFAT := true
-TW_EXCLUDE_APEX := true
+TW_EXCLUDE_APEX := false
 TW_LOAD_VENDOR_MODULES := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_INCLUDE_RESETPROP := true
 TW_HAS_MTP := true
 TW_DEVICE_VERSION := perilouspike
+TW_INCLUDE_FASTBOOTD := true
 
 # Exclude
 TW_EXCLUDE_TWRP_APP := true
