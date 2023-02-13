@@ -197,21 +197,21 @@ TARGET_USES_MKE2FS := true
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_USE_TOOLBOX := true
+#TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 TW_MAX_BRIGHTNESS := 1000
 TW_DEFAULT_BRIGHTNESS := 800
 TW_INCLUDE_NTFS_3G := true
-TW_INCLUDE_FUSE_EXFAT := true
+#TW_INCLUDE_FUSE_EXFAT := true
 TW_EXCLUDE_APEX := false
 TW_LOAD_VENDOR_MODULES := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_INCLUDE_RESETPROP := true
 TW_HAS_MTP := true
 TW_DEVICE_VERSION := perilouspike
-TW_INCLUDE_FASTBOOTD := true
+#TW_INCLUDE_FASTBOOTD := true
 
 # Exclude
 TW_EXCLUDE_TWRP_APP := true
