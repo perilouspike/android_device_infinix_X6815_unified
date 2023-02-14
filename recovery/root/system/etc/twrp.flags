@@ -25,16 +25,16 @@
 /proinfo                  emmc     /dev/block/by-name/proinfo           flags=display="proinfo";backup=1
 
 # Standard MediaTek's Partitions
-/tranfs                   ext4     /dev/block/by-name/tranfs            flags=display="tranfs"
-/bootloader               emmc     /dev/block/by-name/lk                flags=display="bootloader"
-/bootloader2              emmc     /dev/block/by-name/lk2               flags=display="bootloader2"
-/logo                     emmc     /dev/block/by-name/logo              flags=display="logo"
-/expdb                    emmc     /dev/block/by-name/expdb             flags=display="expdb"
-/seccfg                   emmc     /dev/block/by-name/seccfg            flags=display="seccfg"
-/tee1                     emmc     /dev/block/by-name/tee1              flags=display="tee1"
-/tee2                     emmc     /dev/block/by-name/tee2              flags=display="tee2"
-/odmdtbo                  emmc     /dev/block/by-name/odmdtbo           flags=display="odmdtbo"
+#/tranfs                   ext4     /dev/block/by-name/tranfs            flags=display="tranfs"
+#/bootloader               emmc     /dev/block/by-name/lk                flags=display="bootloader"
+#/bootloader2              emmc     /dev/block/by-name/lk2               flags=display="bootloader2"
+#/logo                     emmc     /dev/block/by-name/logo              flags=display="logo"
+#/expdb                    emmc     /dev/block/by-name/expdb             flags=display="expdb"
+#/seccfg                   emmc     /dev/block/by-name/seccfg            flags=display="seccfg"
+#/tee1                     emmc     /dev/block/by-name/tee1              flags=display="tee1"
+#/tee2                     emmc     /dev/block/by-name/tee2              flags=display="tee2"
+#/odmdtbo                  emmc     /dev/block/by-name/odmdtbo           flags=display="odmdtbo"
 
 # Removable storage
-#auto                      auto     /devices/platform/externdevice*      flags=display=auto
-#auto                      vfat     /devices/platform/usb0*              flags=display=auto
+/external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0
+/usb-otg                  auto      /dev/block/sda1           /dev/block/sda        flags=display="USB Storage";removable;wipeingui
