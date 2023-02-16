@@ -176,14 +176,14 @@ TW_INCLUDE_CRYPTO_FBE := true
 #PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(TARGET_BOARD_PLATFORM)
 
 # Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    libkeymaster41 \
+#TARGET_RECOVERY_DEVICE_MODULES += \
+    #libkeymaster41 \
     libkeymaster4 \
     libpuresoftkeymasterdevice
 #ashmemd_aidl_interface-cpp \
     libashmemd_client
 
-RECOVERY_LIBRARY_SOURCE_FILES += \
+#RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so

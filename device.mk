@@ -48,9 +48,11 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Boot control HAL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+#android.hardware.boot@1.2-impl \
+#android.hardware.boot@1.2-impl.recovery \
+#android.hardware.boot@1.2-service
 
 PRODUCT_PACKAGES += \
     bootctrl.mt6877
@@ -73,5 +75,5 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl
 
-TW_OVERRIDE_SYSTEM_PROPS := \
+#TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
