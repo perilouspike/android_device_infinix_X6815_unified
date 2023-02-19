@@ -11,7 +11,7 @@
 
 # Other partitions.
 /boot                     emmc     /dev/block/by-name/boot              flags=display="Boot";backup=1;flashimg=1;slotselect;
-/vendor_boot              emmc     /dev/block/by-name//vendor_boot      flags=display="Vendor_Boot";flashimg=1;backup=1;slotselect;
+/vendor_boot              emmc     /dev/block/by-name/vendor_boot       flags=display="Vendor_Boot";flashimg=1;backup=1;slotselect;
 /dtbo                     emmc     /dev/block/by-name/dtbo              flags=display="Dtbo";backup=1;flashimg=1;slotselect;
 /metadata                 ext4     /dev/block/by-name/metadata          flags=display="Metadata";
 /persist                  ext4     /dev/block/by-name/persist           flags=display="Persist";backup=1;
@@ -24,13 +24,13 @@
 /nvram                    emmc     /dev/block/by-name/nvram             flags=display="NVram";backup=1;
 
 # Standard MediaTek's Partitions
-/logo                      emmc     /dev/block/by-name/logo              flags=display="Logo";backup=1;
+/logo                      emmc     /dev/block/by-name/logo             flags=display="Logo";backup=1;
 /expdb                     emmc     /dev/block/by-name/expdb
 /seccfg                    emmc     /dev/block/by-name/seccfg
-/tee                       emmc     /dev/block/by-name/tee               flags=slotselect;
-/spmfw                     emmc     /dev/block/by-name/spmfw             flags=slotselect;
+/tee                       emmc     /dev/block/by-name/tee              flags=slotselect;
+/spmfw                     emmc     /dev/block/by-name/spmfw            flags=slotselect;
 /otp                       emmc     /dev/block/by-name/otp
 
 # Removable storage
-/external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0    flags=display="Micro SD";storage;wipeingui;removable;
-/usb-otg                  vfat      /dev/block/sdd1           /dev/block/sdd        flags=display="USB-Storage";storage;removable;wipeingui;
+/external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0    
+/usb-otg                  vfat      /dev/block/sdd1           /dev/block/sdd        flags=display="USB-Storage";removable;wipeingui;
