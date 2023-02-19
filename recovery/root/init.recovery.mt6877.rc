@@ -2,7 +2,7 @@ import /tee.rc
 import /trustonic.rc
 
 on init
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
     start boot-hal-1-2
     
     # Create a more standard /dev/block layout for our scripts
