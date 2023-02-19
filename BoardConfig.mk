@@ -35,21 +35,15 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 # Arch Suffix
-#TARGET_BOARD_SUFFIX := _64
-#TARGET_USES_64_BIT_BINDER := true
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := Infinix-X6815,Infinix-X6815B
 
-# APEX
-#DEXPREOPT_GENERATE_APEX_IMAGE := true
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := mt6877
 TARGET_NO_BOOTLOADER := true
-
-# Display
-#TARGET_SCREEN_DENSITY := 480
 
 # Kernel
 TARGET_KERNEL_ARCH := $(TARGET_ARCH)
@@ -60,10 +54,13 @@ BOARD_KERNEL_TAGS_OFFSET := 0x07c08000
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x11088000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user
-#BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
-# TODO: Used in other device tree. Do we need it?
-#BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
+BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+#BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery  # TODO: Used in other device tree. Do we need it?
+
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 
 # Args
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
@@ -74,27 +71,19 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
-# Kernel - prebuilt
-#TARGET_FORCE_PREBUILT_KERNEL := true
-#ifeq #($(TARGET_FORCE_PREBUILT_KERNEL),true)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
-#BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-#BOARD_KERNEL_SEPARATED_DTBO :=
-#endif
-
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_USES_METADATA_PARTITION := true
-BOARD_USES_METADATA_ENCRYPTION := true
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_BOOTIMAGE_PARTITION_SIZE := 41943040
-BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Dynamic Partition
 BOARD_SUPER_PARTITION_GROUPS := main
-BOARD_INFINIX_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext
 BOARD_MAIN_SIZE := 9126805504
+BOARD_MAIN_PARTITION_LIST := \
+    product \
+    system \
+    vendor
 
 # File System
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -110,13 +99,17 @@ TARGET_COPY_OUT_PRODUCT := product
 # A/B
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
-    system \
-    vendor \
-    product \
-    system_ext \
     boot \
+    dtbo \
+    lk \
+    preloader \
+    product \
+    system \
+    vbmeta \
+    vbmeta_system \
     vbmeta_vendor \
-    vbmeta_system
+    vendor \
+    vendor_boot
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6877
@@ -135,7 +128,6 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
 BOARD_SUPPRESS_SECURE_ERASE := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_ROOT_EXTRA_FOLDERS += metadata
 
 # Android Verified Boot
 # TODO: What about the system_ext partition?
@@ -167,54 +159,25 @@ PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
-#TW_USE_FSCRYPT_POLICY := 1
-
-# Copy fstab to ensure the first stage boot mounts everything we need.
-# See https://source.android.com/docs/core/architecture/kernel/mounting-partitions-early#fstab-ramdisk
-#PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(TARGET_BOARD_PLATFORM)
-#PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/fstab.$(TARGET_BOARD_PLATFORM)
-#PRODUCT_COPY_FILES += $(DEVICE_PATH)/fstab.$(TARGET_BOARD_PLATFORM):$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(TARGET_BOARD_PLATFORM)
-
-# Additional binaries & libraries needed for recovery
-#TARGET_RECOVERY_DEVICE_MODULES += \
-    #libkeymaster41 \
-    libkeymaster4 \
-    libpuresoftkeymasterdevice
-#ashmemd_aidl_interface-cpp \
-    libashmemd_client
-
-#RECOVERY_LIBRARY_SOURCE_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
-#$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
 # TWRP Configuration
 RECOVERY_SDCARD_ON_DATA := true
 TW_THEME := portrait_hdpi
-#TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 #TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_MAX_BRIGHTNESS := 1000
 TW_DEFAULT_BRIGHTNESS := 800
 TW_INCLUDE_NTFS_3G := true
-TW_INCLUDE_FUSE_EXFAT := true
-TW_EXCLUDE_APEX := false
-TW_LOAD_VENDOR_MODULES := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_EXCLUDE_APEX := true
 TW_INCLUDE_RESETPROP := true
-TW_HAS_MTP := true
 TW_DEVICE_VERSION := perilouspike
-TW_INCLUDE_FASTBOOTD := true
-LC_ALL="C"
 TARGET_USES_MKE2FS := true # Use mke2fs to create ext4 images
-TARGET_USES_UEFI := true
 
 # Statusbar icon flags
 #TW_STATUS_ICONS_ALIGN := center
@@ -228,10 +191,3 @@ TW_EXCLUDE_TWRP_APP := true
 # Logcat
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
-
-# cure for "ELF binaries" problems
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
-# deal with "error: overriding commands for target" problems
-BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
