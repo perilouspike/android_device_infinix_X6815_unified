@@ -181,7 +181,7 @@ TW_DEVICE_VERSION := perilouspike
 TARGET_USES_MKE2FS := true # Use mke2fs to create ext4 images
 TW_HAS_MTP := true
 TARGET_USES_UEFI := true
-TW_INCLUDE_FUSE_EXFAT 
+TW_INCLUDE_FUSE_EXFAT := true
 
 # Statusbar icon flags
 #TW_STATUS_ICONS_ALIGN := center
