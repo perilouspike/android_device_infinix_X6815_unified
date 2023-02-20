@@ -61,7 +61,7 @@ PRODUCT_PACKAGES += \
     update_engine_sideload
 
 # health Hal
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
