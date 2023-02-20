@@ -15,7 +15,7 @@ on fs
     #symlink /vendor/lib64/hw/libMcGatekeeper.so /vendor/lib64/hw/gatekeeper.trustonic.so
     #symlink /vendor/lib64/hw/kmsetkey.trustonic.so /vendor/lib64/hw/kmsetkey.default.so
 	
-    write /sys/class/power_supply/usb/otg_switch 1
+    write /sys/class/power_supply/usb_switch/online 1
     write /sys/class/oplus_chg/usb/otg_switch 1
 
 on post-fs
