@@ -56,7 +56,7 @@ BOARD_RAMDISK_OFFSET := 0x11088000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user
-BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+#BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
 #BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery  # TODO: Used in other device tree. Do we need it?
 
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
