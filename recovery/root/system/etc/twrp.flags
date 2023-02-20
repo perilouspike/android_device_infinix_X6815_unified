@@ -33,4 +33,4 @@
 
 # Removable storage
 /external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0    
-/usb-otg                  vfat      /dev/block/sdd1           /dev/block/sdd        flags=display="USB-Storage";removable;wipeingui;
+/usb-otg                  vfat      /dev/block/sdd1           /dev/block/sdd        flags=display="USB Storage";removable;wipeingui;storage;fsflags=utf8;
