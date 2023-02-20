@@ -11,9 +11,6 @@ on init
 on fs
     install_keyring
 
-    write /sys/class/power_supply/usb_switch/online 1
-    write /sys/class/oplus_chg/usb/otg_switch 1
-
 on post-fs
     # Support A/B feature for EMMC and UFS boot region
     wait /dev/block/mmcblk0boot0 2
