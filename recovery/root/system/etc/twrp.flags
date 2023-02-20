@@ -30,6 +30,7 @@
 /tee                       emmc     /dev/block/by-name/tee              flags=slotselect;
 /spmfw                     emmc     /dev/block/by-name/spmfw            flags=slotselect;
 /otp                       emmc     /dev/block/by-name/otp
+/tranfs                    ext4     /dev/block/by-name/tranfs           flags=backup;
 
 # Removable storage
 /external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0    
