@@ -18,6 +18,8 @@ DEVICE_PATH := device/infinix/X6815B
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -56,7 +58,7 @@ BOARD_RAMDISK_OFFSET := 0x11088000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user
-#BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
+BOARD_KERNEL_CMDLINE += androidboot.force_normal_boot=1
 #BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery  # TODO: Used in other device tree. Do we need it?
 
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
@@ -166,11 +168,10 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_THEME := portrait_hdpi
 TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
-#TW_USE_TOOLBOX := true
+TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/Lun.0/file
 TW_MAX_BRIGHTNESS := 1000
 TW_DEFAULT_BRIGHTNESS := 800
 TW_INCLUDE_NTFS_3G := true
@@ -178,6 +179,9 @@ TW_EXCLUDE_APEX := true
 TW_INCLUDE_RESETPROP := true
 TW_DEVICE_VERSION := perilouspike
 TARGET_USES_MKE2FS := true # Use mke2fs to create ext4 images
+TW_HAS_MTP := true
+TARGET_USES_UEFI := true
+TW_INCLUDE_FUSE_EXFAT 
 
 # Statusbar icon flags
 #TW_STATUS_ICONS_ALIGN := center
