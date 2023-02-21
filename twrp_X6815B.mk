@@ -14,13 +14,16 @@
 # limitations under the License.
 
 # Device Target Name
-PRODUCT_RELEASE_NAME := X6815B
+PRODUCT_RELEASE_NAME := X6815
 
 # Inherit from the Device Tree itself.
-$(call inherit-product, device/infinix/X6815B/device.mk)
+$(call inherit-product, device/infinix/X6815/device.mk)
 
-# Inherit from TWRP-common stuffs.
-$(call inherit-product, vendor/twrp/config/common.mk)
+# Inherit from TWRP-common stuffs, if building TWRP.
+$(call inherit-product-if-exists, vendor/twrp/config/common.mk)
+
+# Inherit from PBRP-common stuff, if building PBRP.
+$(call inherit-product-if-exists, vendor/pb/config/common.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
@@ -37,15 +40,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Device Identifier
-PRODUCT_DEVICE := X6815B
-PRODUCT_NAME := twrp_X6815B
+PRODUCT_DEVICE := X6815
+PRODUCT_NAME := twrp_X6815
 PRODUCT_BRAND := Infinix
-PRODUCT_MODEL := X6815B
+PRODUCT_MODEL := X6815
 PRODUCT_MANUFACTURER := infinix
 
 PRODUCT_GMS_CLIENTID_BASE := android-$(PRODUCT_RRAND)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="vnd_x6815b_h772-user 12 SP1A.210812.016 189006 release-keys"
+    PRIVATE_BUILD_DESC="vnd_x6815_h771-user 12 SP1A.210812.016 106797 release-keys"
 
-BUILD_FINGERPRINT := Infinix/X6815B-INFK/Infinix-X6815B:12/SP1A.210812.016/221213V161:user/release-keys
+BUILD_FINGERPRINT := Infinix/X6815-INFK/Infinix-X6815:12/SP1A.210812.016/220926V71:user/release-keys

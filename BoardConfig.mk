@@ -14,7 +14,7 @@
 # limitations under the License.
 
 # Device Path Identifier
-DEVICE_PATH := device/infinix/X6815B
+DEVICE_PATH := device/infinix/X6815
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -41,7 +41,7 @@ TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := Infinix-X6815,Infinix-X6815B
+TARGET_OTA_ASSERT_DEVICE := Infinix-X6815,Infinix-X6815B,secret,maltose
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := mt6877
@@ -158,40 +158,8 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION := 16.1.0
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
-# Crypto
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
-
 # TWRP Configuration
-RECOVERY_SDCARD_ON_DATA := true
-TW_THEME := portrait_hdpi
-TW_NO_SCREEN_BLANK := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_USE_TOOLBOX := true
-TW_INCLUDE_REPACKTOOLS := true
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/Lun.0/file
-TW_MAX_BRIGHTNESS := 1000
-TW_DEFAULT_BRIGHTNESS := 800
-TW_INCLUDE_NTFS_3G := true
-TW_EXCLUDE_APEX := true
-TW_INCLUDE_RESETPROP := true
-TW_DEVICE_VERSION := perilouspike
-TARGET_USES_MKE2FS := true # Use mke2fs to create ext4 images
-TW_HAS_MTP := true
-TARGET_USES_UEFI := true
-TW_INCLUDE_FUSE_EXFAT := true
+include $(DEVICE_PATH)/configs/TWRPConfig.mk
 
-# Statusbar icon flags
-#TW_STATUS_ICONS_ALIGN := center
-TW_CUSTOM_CPU_POS := 605
-TW_CUSTOM_CLOCK_POS := 40
-#TW_CUSTOM_BATTERY_POS := 800
-
-# Exclude
-TW_EXCLUDE_TWRP_APP := true
-
-# Logcat
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
+# SHRP Configuration
+include $(DEVICE_PATH)/configs/SHRPConfig.mk

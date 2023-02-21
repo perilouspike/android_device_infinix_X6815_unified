@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/infinix/X6815B
+LOCAL_PATH := device/infinix/X6815
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
