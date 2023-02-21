@@ -21,6 +21,6 @@ The Infinix Xero 5G (codenamed _'X6815'_) is a mid-range smartphone launched in 
 | Rear camera 3           | 2 MP (macro)                                        |
 | Selfie camera            | 16 MP, f/2.0, (wide), 1/2.76", 1.12µm                       |
 
-## Realme 8 Pro
+## Infinix Zero 5G
 
-![image]([https://www.91-img.com/gallery_images_uploads/b/e/be71c8ebd7ffc35e433b8ff2e64a22225c94393e.JPG)
+![image](https://www.91-img.com/gallery_images_uploads/b/e/be71c8ebd7ffc35e433b8ff2e64a22225c94393e.JPG)![image](https://www.91-img.com/gallery_images_uploads/d/e/de5bae4b2175b972626e20e07f35baa9f67fe14b.JPG)
