@@ -20,7 +20,7 @@
 # 	Please maintain this if you use this script or any part of it
 #
 
-FDEVICE="x6815"
+FDEVICE="X6815"
 #set -o xtrace
 
 fox_get_target_device() {
@@ -131,7 +131,7 @@ if [ "$1" = "$FDEVICE" ] || [  "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_UNBIND_SDCARD_F2FS=1
 
 	# Other OrangeFox configs
-	export FOX_USE_SPECIFIC_MAGISK_ZIP="$(gettop)/device/infinix/x6815/Magisk/Magisk.zip"
+	export FOX_USE_SPECIFIC_MAGISK_ZIP="$(gettop)/device/infinix/X6815/Magisk/Magisk.zip"
 
     export BUNDLED_MAGISK_VER="25.2"
     export BUNDLED_MAGISK_SUM="0bdc32918b6ea502dca769b1c7089200da51ea1def170824c2812925b426d509" # Sha256 sum of the prebuilt magisk
