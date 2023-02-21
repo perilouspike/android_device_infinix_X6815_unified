@@ -90,24 +90,24 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 	# Funtions
     # Replace Busybox version
-	export FOX_REPLACE_BUSYBOX_PS=1
+	#export FOX_REPLACE_BUSYBOX_PS=1
 	# Getprops
-	export FOX_REPLACE_TOOLBOX_GETPROP=1
+	#export FOX_REPLACE_TOOLBOX_GETPROP=1
 	# Tar Support
 	#export FOX_USE_TAR_BINARY=1
 	# Sed Support
 	#export FOX_USE_SED_BINARY=1
 	# Bash Support
-	export FOX_USE_BASH_SHELL=1
-	export FOX_ASH_IS_BASH=1
+	#export FOX_USE_BASH_SHELL=1
+	#export FOX_ASH_IS_BASH=1
 	# GRep Command
-	export FOX_USE_GREP_BINARY=1
+	#export FOX_USE_GREP_BINARY=1
 	# Supports lzma and xz
 	#export FOX_USE_XZ_UTILS=1
 	# Uses Nano editor
 	#export FOX_USE_NANO_EDITOR=1
 	# Added phhusson's LPTool
-	export OF_ENABLE_LPTOOLS=1
+	#export OF_ENABLE_LPTOOLS=1
     # Quick backup list
     export OF_QUICK_BACKUP_LIST="/boot;/data;"
     # Build Date and Time Override
@@ -119,7 +119,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     #OrangeFox is not replaced by stock recovery        
 	export OF_PATCH_AVB20=1
     # Prevent Splash Screen Changing
-	export OF_NO_SPLASH_CHANGE=0 
+	#export OF_NO_SPLASH_CHANGE=0 
     # Magisk Boot Patch
 	export OF_USE_MAGISKBOOT=1 
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
