@@ -94,18 +94,18 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# Getprops
 	export FOX_REPLACE_TOOLBOX_GETPROP=1
 	# Tar Support
-	export FOX_USE_TAR_BINARY=1
+	#export FOX_USE_TAR_BINARY=1
 	# Sed Support
-	export FOX_USE_SED_BINARY=1
+	#export FOX_USE_SED_BINARY=1
 	# Bash Support
 	export FOX_USE_BASH_SHELL=1
 	export FOX_ASH_IS_BASH=1
 	# GRep Command
 	export FOX_USE_GREP_BINARY=1
 	# Supports lzma and xz
-	export FOX_USE_XZ_UTILS=1
+	#export FOX_USE_XZ_UTILS=1
 	# Uses Nano editor
-	export FOX_USE_NANO_EDITOR=1
+	#export FOX_USE_NANO_EDITOR=1
 	# Added phhusson's LPTool
 	export OF_ENABLE_LPTOOLS=1
     # Quick backup list
