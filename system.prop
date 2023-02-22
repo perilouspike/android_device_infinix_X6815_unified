@@ -11,3 +11,6 @@ ro.crypto.metadata.enabled=true
 #ro.sys.usb.bicr=no
 #ro.sys.usb.charging.only=yes
 ro.sys.usb.mtp.whql.enable=0
+sys.usb.controller=usb0
+persist.sys.isUsbOtgEnabled=true
+ro.treble.enabled=true

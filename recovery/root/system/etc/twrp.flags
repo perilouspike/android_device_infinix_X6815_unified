@@ -30,9 +30,9 @@
 /tee                       emmc     /dev/block/by-name/tee              flags=slotselect;
 /spmfw                     emmc     /dev/block/by-name/spmfw            flags=slotselect;
 /otp                       emmc     /dev/block/by-name/otp
-/tranfs                    ext4     /dev/block/by-name/tranfs           flags=backup;
+/tranfs                    ext4     /dev/block/by-name/tranfs           flags=backup=1;
 
 # Removable storage
-/external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0    
-#/usb-otg                 vfat      /dev/block/sdd1           /dev/block/sdd        flags=display="USB Storage";removable;wipeingui;storage;fsflags=utf8;
-/devices/platform/usb0*   auto  vfat       defaults                                 voldmanaged=usbotg:auto;flags=display="USB Storage";removable;wipeingui;storage
+/external_sd              vfat      /dev/block/mmcblk0p1      /dev/block/mmcblk0    flags=display="Micro SD";storage;wipeingui;removable;
+/usb-otg                  auto      /dev/block/sdd1           /dev/block/sdd        flags=display=removable;wipeingui;storage
+#/devices/platform/usb0*   auto  vfat       defaults                                 voldmanaged=usbotg:auto;flags=display="USB Storage";removable;wipeingui;storage
