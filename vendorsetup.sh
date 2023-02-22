@@ -41,7 +41,7 @@ fi
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# Initial Exports
 	export ALLOW_MISSING_DEPENDENCIES=true
-	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+	#export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
     export LC_ALL="C"
 
     # Version / Maintainer infos
@@ -55,6 +55,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_VIRTUAL_AB_DEVICE=1
 	export FOX_VARIANT="A12_FBEv2"
 	export TARGET_DEVICE_ALT="Infinix-X6815,Infinix-X6815B,secret,maltose" # I am not what are the over possible names.
+
+    # Partition handling
+	export FOX_RECOVERY_BOOT_PARTITION="/dev/block/by-name/boot"
 
 	# OTA / DM-Verity / Encryption
     # Disabled the OTA settings by default
@@ -78,12 +81,13 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_STATUS_INDENT_LEFT=48
 	export OF_STATUS_INDENT_RIGHT=48
     # Hides notch
-	export OF_HIDE_NOTCH=0
+	export OF_HIDE_NOTCH=1
     # Left and right clock positions available
 	export OF_CLOCK_POS=1
     # Green led setting
 	export OF_USE_GREEN_LED=0
     # Custom flashlight path
+	export OF_FLASHLIGHT_ENABLE=1
 	export OF_FL_PATH1="/tmp/flashlight" # See /init.recovery.mt6785.rc for more information
 	# Always Enable NavBar        
     export OF_ALLOW_DISABLE_NAVBAR=0
@@ -119,7 +123,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     #OrangeFox is not replaced by stock recovery        
 	export OF_PATCH_AVB20=1
     # Prevent Splash Screen Changing
-	#export OF_NO_SPLASH_CHANGE=0 
+	export OF_NO_SPLASH_CHANGE=1
     # Magisk Boot Patch
 	export OF_USE_MAGISKBOOT=1 
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
@@ -129,6 +133,12 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
 	# try to prevent potential data format errors
 	export OF_UNBIND_SDCARD_F2FS=1
+	# Skip compatibility checking
+	export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
+    # Attempts to reduce the size of the recovery image.
+    export FOX_DRASTIC_SIZE_REDUCTION=1
+	# Disable some operations relating only to Samsung devices 
+	export OF_NO_SAMSUNG_SPECIAL=1
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
