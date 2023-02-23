@@ -1,24 +1,17 @@
-#!/usr/bin/env bash
+# Copyright (C) 2023 The Android Open Source Project
+# Copyright (C) 2023 TeamWin Recovery Project
 #
-#	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2020-2021 The OrangeFox Recovery Project
-#   Copyright (C) 2023 The Android Open Source Project
-
-#	OrangeFox is free software: you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation, either version 3 of the License, or
-#	any later version.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#	OrangeFox is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+# http://www.apache.org/licenses/LICENSE-2.0
 #
-# 	This software is released under GPL version 3 or any later version.
-#	See <http://www.gnu.org/licenses/>.
-#
-# 	Please maintain this if you use this script or any part of it
-#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 FDEVICE="X6815"
 #set -o xtrace
@@ -86,7 +79,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # Green led setting.
 	export OF_USE_GREEN_LED=0
     # Custom flashlight path.
-	export OF_FLASHLIGHT_ENABLE=0
+	export OF_FLASHLIGHT_ENABLE=1
+	export OF_FL_PATH1=/sys/devices/virtual/torch/torch/torch_level
 	# Always Enable NavBar.
     export OF_ALLOW_DISABLE_NAVBAR=0
 
@@ -147,6 +141,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_ADVANCED_SECURITY=1
 	# Delete the initd addon.
 	export FOX_DELETE_INITD_ADDON=0
+    # SAR detection.
+	export OF_USE_TWRP_SAR_DETECT=1
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
@@ -156,3 +152,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	  export | grep "TW_" >> $FOX_BUILD_LOG_FILE
 	fi
 fi
+
+
+

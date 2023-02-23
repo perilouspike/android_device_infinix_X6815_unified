@@ -60,10 +60,7 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-# health Hal
-#PRODUCT_PACKAGES += \
+# Health Hal
+PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
-
-#TW_OVERRIDE_SYSTEM_PROPS := \
-    "ro.build.product;ro.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
