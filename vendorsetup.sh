@@ -77,10 +77,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # Left and right clock positions available.
 	export OF_CLOCK_POS=1
     # Green led setting.
-	export OF_USE_GREEN_LED=0
-    # Custom flashlight path.
-	export OF_FLASHLIGHT_ENABLE=1
-	export OF_FL_PATH1=/sys/devices/virtual/torch/torch/torch_level
+	export OF_USE_GREEN_LED=1
 	# Always Enable NavBar.
     export OF_ALLOW_DISABLE_NAVBAR=0
 
@@ -152,6 +149,3 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	  export | grep "TW_" >> $FOX_BUILD_LOG_FILE
 	fi
 fi
-
-
-
