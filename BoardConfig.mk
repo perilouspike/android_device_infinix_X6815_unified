@@ -165,8 +165,9 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION := 16.1.0
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
-# PBRP stuffs - specific lines 
+# PB Torch
 PB_TORCH_PATH := /sys/devices/virtual/torch/torch/torch_level
+PB_TORCH_MAX_BRIGHTNESS := 1
 
 # TWRP Configuration
 include $(DEVICE_PATH)/configs/TWRPConfig.mk
