@@ -84,9 +84,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # Left and right clock positions available.
 	export OF_CLOCK_POS=1
     # Green led setting.
-	export OF_USE_GREEN_LED=1
+	export OF_USE_GREEN_LED=0
     # Custom flashlight path.
-	export OF_FLASHLIGHT_ENABLE=1
+	export OF_FLASHLIGHT_ENABLE=0
 	# Always Enable NavBar.
     export OF_ALLOW_DISABLE_NAVBAR=0
 
@@ -107,7 +107,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# Supports lzma and xz.
 	#export FOX_USE_XZ_UTILS=1
 	# Uses Nano editor.
-	#export FOX_USE_NANO_EDITOR=1
+	export FOX_USE_NANO_EDITOR=1
 	# Added phhusson's LPTool.
 	export OF_ENABLE_LPTOOLS=1
     # Quick backup list.
@@ -115,7 +115,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # Build Date and Time Override.
 	export FOX_BUGGED_AOSP_ARB_WORKAROUND="1546300800" # Tue Jan 1 2019 00:00:00 GMT
 	# Delete AromaFM.
-    export FOX_DELETE_AROMAFM=0
+    export FOX_DELETE_AROMAFM=1
     # Prevent Self-Restarting Process.
 	export OF_NO_RELOAD_AFTER_DECRYPTION=1
     #OrangeFox is not replaced by stock recovery.
@@ -146,7 +146,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # Enable the advanced security features.
 	export FOX_ADVANCED_SECURITY=1
 	# Delete the initd addon.
-	#export FOX_DELETE_INITD_ADDON=1
+	export FOX_DELETE_INITD_ADDON=0
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
