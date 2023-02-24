@@ -3,12 +3,12 @@ import /trustonic.rc
 
 on init
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
-    start boot-hal-1-2
     
     # Create a more standard /dev/block layout for our scripts
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
 
 on fs
+    on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
 
 on post-fs
@@ -44,13 +44,9 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service hal_cryptoeng_oplus /system/bin/vendor.oplus.hardware.cryptoeng@1.0-service
-    user root
-    group root input sdcard_rw sdcard_r
-    disabled
-    seclabel u:r:recovery:s0
-
 service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.trustonic
+    interface android.hardware.keymaster@4.0::IKeymasterDevice default
+    interface android.hardware.keymaster@4.1::IKeymasterDevice default
     user root
     group root drmrpc
     disabled
@@ -60,6 +56,7 @@ service gatekeeperd /system/bin/gatekeeperd /data/misc/gatekeeper
     seclabel u:r:recovery:s0
 
 service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+    interface android.hardware.gatekeeper@1.0::IGatekeeper default
     user root
     group root
     disabled
@@ -75,16 +72,21 @@ service keymaster_attestation-1-1 /system/bin/vendor.mediatek.hardware.keymaster
 
 on property:hwservicemanager.ready=true
     start keystore2
-    start hal_cryptoeng_oplus
     start mobicore
     start keymaster-4-1
     start gatekeeper-1-0
     start keymaster_attestation-1-1
 
-on post-fs-data
-    mkdir /data/vendor_de 0770 system system
-    mkdir /data/vendor_de/0 0770 system system
-    mkdir /data/vendor_de/0/cryptoeng 0770 system system
-
 on boot
     start health-hal-2-1
+    start boot-hal-1-2
+
+# Fix flashlight on orangefox
+on property:ro.orangefox.boot=1
+    mkdir /tmp/flashlight
+    write /tmp/flashlight/max_brightness "208"
+    symlink /sys/devices/platform/flashlights_mt6360/torch_brightness /tmp/flashlight/brightness
+
+# Enable DT2W
+on post-fs
+    write /sys/devices/platform/11007000.i2c0/i2c-0/0-0038/fts_gesture_mode "1"
