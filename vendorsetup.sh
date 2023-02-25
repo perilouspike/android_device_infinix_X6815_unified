@@ -141,9 +141,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # SAR detection.
 	export OF_USE_TWRP_SAR_DETECT=1
     # Enable the flashlight feature.
-	export OF_FLASHLIGHT_ENABLE=1
+	#export OF_FLASHLIGHT_ENABLE=1
 	# Set custom flashlight path.
-	export OF_FL_PATH1="/tmp/flashlight" # See /init.recovery.mt6785.rc for more information
+	#export OF_FL_PATH1="/tmp/flashlight" # See /init.recovery.mt6785.rc for more information
 
 	# let's see what are our build VARs
 	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
